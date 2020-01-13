@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/bin/node /usr/bin/yarn add react-native-header-buttons
+  /usr/bin/node /usr/bin/yarn add redux-extension-devtools
 
 PATH: 
   /home/nur/.local/bin:/home/nur/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
@@ -14,7 +14,7 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/react-native-header-buttons: Not found
+  Error: https://registry.yarnpkg.com/redux-extension-devtools: Not found
       at Request.params.callback [as _callback] (/usr/lib/node_modules/yarn/lib/cli.js:66947:18)
       at Request.self.callback (/usr/lib/node_modules/yarn/lib/cli.js:140665:22)
       at Request.emit (events.js:210:5)
@@ -37,17 +37,22 @@ npm manifest:
       "eject": "expo eject"
     },
     "dependencies": {
+      "@react-native-community/masked-view": "^0.1.5",
       "expo": "~36.0.0",
       "expo-font": "^8.0.0",
       "expo-linear-gradient": "^8.0.0",
+      "moment": "^2.24.0",
       "react": "~16.9.0",
       "react-dom": "~16.9.0",
       "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
       "react-native-gesture-handler": "~1.5.0",
+      "react-native-reanimated": "^1.4.0",
+      "react-native-safe-area-context": "^0.6.2",
       "react-native-web": "~0.11.7",
       "react-navigation": "^4.0.10",
+      "react-navigation-drawer": "^2.3.3",
       "react-navigation-header-buttons": "^3.0.4",
-      "react-navigation-stack": "^2.0.12",
+      "react-navigation-stack": "^2.0.13",
       "react-redux": "^7.1.3",
       "redux": "^4.0.5",
       "redux-thunk": "^2.3.0"
@@ -1106,6 +1111,11 @@ Lockfile:
       sudo-prompt "^9.0.0"
       wcwidth "^1.0.1"
       ws "^1.1.0"
+  
+  "@react-native-community/masked-view@^0.1.5":
+    version "0.1.5"
+    resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.5.tgz#25421be6cd943a4b1660b62cfbcd45be8891462c"
+    integrity sha512-Lj1DzfCmW0f4HnmHtEuX8Yy2f7cnUA8r5KGGUuDDGtQt1so6QJkKeUmsnLo2zYDtsF8due6hvIL06Vdo5xxuLQ==
   
   "@react-navigation/core@^3.5.1":
     version "3.5.1"
@@ -3640,6 +3650,11 @@ Lockfile:
     dependencies:
       minimist "0.0.8"
   
+  moment@^2.24.0:
+    version "2.24.0"
+    resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+    integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
+  
   morgan@^1.9.0:
     version "1.9.1"
     resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.9.1.tgz#0a8d16734a1d9afbc824b99df87e738e58e2da59"
@@ -4228,6 +4243,16 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-native-platform-touchable/-/react-native-platform-touchable-1.1.1.tgz#fde4acc65eea585d28b164d0c3716a42129a68e4"
     integrity sha1-/eSsxl7qWF0osWTQw3FqQhKaaOQ=
   
+  react-native-reanimated@^1.4.0:
+    version "1.4.0"
+    resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.4.0.tgz#7f1acbf9be08492d834f512700570978052be2f9"
+    integrity sha512-tO7nSNNP+iRLVbkcSS5GXyDBb7tSI02+XuRL3/S39EAr35rnvUy2JfeLUQG+fWSObJjnMVhasUDEUwlENk8IXw==
+  
+  react-native-safe-area-context@^0.6.2:
+    version "0.6.2"
+    resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-0.6.2.tgz#d467ac8a953426bfbb6d8f417222b0dc3952be7a"
+    integrity sha512-VtBW0JymVCwVt0TGxTv25Co3wtOv3Yb/K5pAUYkjKXNhWFDz5ZwUG/Yho/p0EkWYlFdroJcSqlvVFl2n3AU7SA==
+  
   react-native-safe-area-view@^0.14.1:
     version "0.14.8"
     resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.14.8.tgz#ef33c46ff8164ae77acad48c3039ec9c34873e5b"
@@ -4297,6 +4322,11 @@ Lockfile:
       stacktrace-parser "^0.1.3"
       whatwg-fetch "^3.0.0"
   
+  react-navigation-drawer@^2.3.3:
+    version "2.3.3"
+    resolved "https://registry.yarnpkg.com/react-navigation-drawer/-/react-navigation-drawer-2.3.3.tgz#d7e607d5e10f2b3c40ab7dc9720228ce3f888a0f"
+    integrity sha512-d/rA8Slqv7HoMfONKVDBQUrRF7YQH796Gzal/KOhaY4VOwUUqIwfxMRJ3WrsdL2OkDPixtkXJE2Fz6KAj658uA==
+  
   react-navigation-header-buttons@^3.0.4:
     version "3.0.4"
     resolved "https://registry.yarnpkg.com/react-navigation-header-buttons/-/react-navigation-header-buttons-3.0.4.tgz#63480ae356745549ede8b0232fda9c23c8526ea1"
@@ -4304,10 +4334,10 @@ Lockfile:
     dependencies:
       react-native-platform-touchable "^1.1.1"
   
-  react-navigation-stack@^2.0.12:
-    version "2.0.12"
-    resolved "https://registry.yarnpkg.com/react-navigation-stack/-/react-navigation-stack-2.0.12.tgz#4adf02867f5bb360169d4b2c98f1714d18ff5479"
-    integrity sha512-liZdxHdn6W5AA+y9MT8TkO+/8iJUb75rxicp0pjmlacd20nVYxWScPylbnB4Ic7jWrvuGut//e6Wl590c3rRxw==
+  react-navigation-stack@^2.0.13:
+    version "2.0.13"
+    resolved "https://registry.yarnpkg.com/react-navigation-stack/-/react-navigation-stack-2.0.13.tgz#fa3ce5a2c3ce1d504e936f81575d0b8efdc77e2f"
+    integrity sha512-LRMq2Chwu3yMXVunTV1rYTM/kXV/Vmro8qa0aVTU8zNrgUKrI/tI5dTBmMG5naoNLuZWzMWWJ0bzY+vtZ9dM5g==
     dependencies:
       color "^3.1.2"
       react-native-iphone-x-helper "^1.2.1"

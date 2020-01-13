@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {Veiw,Text,Button,StyleSheet} from 'react-native';
+import {View,Text,Button,StyleSheet} from 'react-native';
 
 
 import CartItem from './CartItem';
@@ -12,10 +12,28 @@ const OrderItem=props=>{
       return (
             <Card style={styles.orderItem} >
                   <View style={styles.summery} >
-                        <Text style={styles.totalAmount} >{props.totalAmount.toFixed(2)}</Text>
+                        <Text style={styles.totalAmount} >{props.amount.toFixed(2)}</Text>
                         <Text style={styles.data} > {props.date}  </Text>
                   </View>
-                  <Button color={Colors.primary} title={showDetail?'Hide Details' :''}/>
+                  <Button
+                  color={Colors.primary}
+                  title={showDetails ? 'Hide Details' : 'Show Details'}
+                  onPress={() => {
+                  setShowDetails(prevState => !prevState);
+                  }}
+                  />
+                  {showDetails && (
+                  <View style={styles.detailItems}>
+                  {props.items.map(cartItem => (
+                  <CartItem
+                  key={cartItem.productId}
+                  quantity={cartItem.quantity}
+                  amount={cartItem.sum}
+                  title={cartItem.productTitle}
+                  />
+                  ))}
+        </View>
+      )}
             </Card>
       )
 }

@@ -6,7 +6,7 @@ import Card from '../UI/Card';
 
 
 const ProductItem=props=>{
-      let touchableCmp=TouchableOpacity
+      let TouchableCmp=TouchableOpacity
       Platform.OS==='android' && Platform.version>=21 ? touchablecmp=TouchableNativeFeedback:null
       return (
             <Card style={styles.product} >

@@ -15,17 +15,17 @@ export default (state=initialState,action)=>{
             case ADD_TO_CART:
                   const addedProduct=action.product;
                   const prodPrice=addedProduct.price;
-                  const productTitle=addedProduct.title;
+                  const prodTitle=addedProduct.title;
 
                   let updatedOrNewCartItem;
                   if(state.items[addedProduct.id]){
-                        UpdatedOrNewCartItem=new CartItem(
+                        updatedOrNewCartItem=new CartItem(
                               state.items[addedProduct.id].quantity+1,
                               prodPrice,prodTitle,
-                              state.items[addedProduct.id].sum.prodPrice
+                              state.items[addedProduct.id].sum+prodPrice
                         )
                   }else{
-                        updatedOrNewCartItem=new CartItem(i,prodPrice,prodTitle,prodPrice)
+                        updatedOrNewCartItem=new CartItem(1,prodPrice,prodTitle,prodPrice)
                   }
 
                   return (

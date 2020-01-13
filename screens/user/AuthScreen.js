@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Button,
   ActivityIndicator,
+  StatusBar,
   Alert,
 } from 'react-native';
 
@@ -51,13 +52,13 @@ const AuthScreen = props => {
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
       email: '',
-      password: ''
+      password: '',
     },
     inputValidities: {
       email: false,
-      password: false
+      password: false,
     },
-    formIsValid: false
+    formIsValid: false,
   });
 
   useEffect(() => {
@@ -103,7 +104,19 @@ const AuthScreen = props => {
   );
 
   return (
-    <KeyboardAvoidingView
+    <View style={styles.screen}>
+      <StatusBar
+          barStyle="dark-content"
+          // dark-content, light-content and default
+          hidden={false}
+          //To hide statusBar
+          backgroundColor="#00BCD4"
+          //Background color of statusBar
+          translucent={false}
+          //allowing light, but not detailed shapes
+          networkActivityIndicatorVisible={true}
+        />
+      <KeyboardAvoidingView
       behavior="padding"
       keyboardVerticalOffset={50}
       style={styles.screen}
@@ -158,6 +171,7 @@ const AuthScreen = props => {
         </Card>
       </LinearGradient>
     </KeyboardAvoidingView>
+    </View>
   );
 };
 

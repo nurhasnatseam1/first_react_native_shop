@@ -37,20 +37,20 @@ const Input=props=>{
             if(props.required && text.trim().length===0){
                   isValid=false
             }
-            if(props.email && ! emailReges.test(text.toLowerCase())){
+            if(props.email && ! emailRegex.test(text.toLowerCase())){
                   isValid=false
             }
             if(props.min!==null && +text<props.min){
-                  isValid=flase
+                  isValid=false
             }
             if(props.max!==null && +text>props.max){
-                  isValid=flase
+                  isValid=false
             }
             if(props.minLength!==null && text.Length){
                   isValid=false
             }
 
-            dispatch({type:INPUT_CHANGE,value:text,isValid:isValid1q})
+            dispatch({type:INPUT_CHANGE,value:text,isValid:isValid})
       }
 
 
@@ -64,7 +64,7 @@ const Input=props=>{
                   <Text style={styles.label} >{props.label}</Text>
                   <TextInput {...props} style={styles.input} value={inputState.value} onChangeText={textChangedHandler} onBlur={lostFocusHandler} ></TextInput>
                   {!inputState.isValid && inputState.touched && (
-                        <View style={stylesStyleSheet.errorContainer} >
+                        <View style={styles.errorContainer} >
                         <Text style={styles.errorText} >{props.errorText}</Text>
                         </View>
                   )}

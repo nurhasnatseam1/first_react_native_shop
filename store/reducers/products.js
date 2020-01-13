@@ -7,7 +7,7 @@ import Product from '../../models/product';
 
 
 const initialState={
-      availableProduts:[],
+      availableProducts:[],
       userProducts:[]
 }
 
@@ -16,8 +16,10 @@ const initialState={
 export default (state=initialState,action)=>{
       switch (action.type){
             case SET_PRODUCTS:
+                  console.log('in the reducer')
+                  console.log(action.products)
                   return {
-                        availProducts:action.prodcuts,
+                        availableProducts:action.products,
                         userProducts:action.userProducts,
                   }
 
@@ -33,7 +35,7 @@ export default (state=initialState,action)=>{
 
                   return {
                         ...state,
-                        availableProducts:state.availableProduts.concat(newProduct),
+                        availableProducts:state.availableProducts.concat(newProduct),
                         userProducts:state.userProducts.concat(newProduct)
                   }
 
@@ -51,8 +53,8 @@ export default (state=initialState,action)=>{
 
                   const updatedUserProducts=[...state.userProdcts]
                   updatedUserProducts[productIndex]=updatedProduct;
-                  const availableProductIndex=state.availableProduts.findIndex(prod=>prod.id===action.pid)
-                  const updateAvailableProducts=[...state.availableProducts]
+                  const availableProductIndex=state.availableProducts.findIndex(prod=>prod.id===action.pid)
+                  const updatedAvailableProducts=[...state.availableProducts]
                   updatedAvailableProducts[availableProductIndex]=updatedProduct
                   return {
                         ...state,

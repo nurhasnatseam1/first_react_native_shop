@@ -5,6 +5,12 @@ import {Ionicon} from '@expo/vector-icons';
 
 
 const CartItem=props=>{
+
+      let productPrice=props.productPrice
+      if(!props.productPrice && props.amount){
+            productPrice=props.amount
+      }
+
       return(
             <View style={styles.cartItem} >
                   <View style={styles.itemData}>
@@ -13,7 +19,7 @@ const CartItem=props=>{
                   </View>
                   <View style={styles.itemData} >
                         <Text style={styles.mainText} >
-                              {props.amount.toFixed(2)}
+                              {productPrice.toFixed(2)}
                         </Text>
                         {props.deletable && (
                               <TouchableOpacity onPress={props.onRemove} style={styles.deleteButton}>

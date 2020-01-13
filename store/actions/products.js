@@ -1,4 +1,5 @@
 import Product from '../../models/product';
+import { useSelector } from 'react-redux';
 
 
 export const DELETE_PRODUCT='DELETE_PRODUCT';
@@ -8,19 +9,26 @@ export const SET_PRODUCTS='SET_PRODUCTS';
 
 
 export const fetchProducts=()=>{
+      
       return async (dispatch,getState)=>{
+            console.log("here too")
             const userId=getState().auth.userId;
+            console.log('hello')
             try{
-                  const response=await fetch(`https://react-native-c77d7/products.json`)
+                  const response=await fetch(`https://react-native-c77d7.firebaseio.com/products.json`)
 
 
                   if(!response.ok){
+                        console.log('Something went wrong')
                         throw new Error("Something went wrong")
+                        
                   }
+                  console.log('everything went all right')
 
 
                   const resData=await response.json()
-                  const leadedproducts=[]
+                  console.log('resData')
+                  const loadedProducts=[]
                   for(const key in resData){
                         loadedProducts.push(
                               new Product(
@@ -37,6 +45,7 @@ export const fetchProducts=()=>{
                   })
 
 
+
             }
             catch(err){
                   throw new Error(err)
@@ -48,7 +57,7 @@ export const fetchProducts=()=>{
 
 export const deleteProduct=(productId)=>async (dispatch,getState)=>{
       const token=getState().auth.token
-      const response=await fetch(`https://react-native-c77d7/products/${productId}.json?auth=${token}`,{method:"POST"})
+      const response=await fetch(`https://react-native-c77d7.firebaseio.com/products/${productId}.json?auth=${token}`,{method:"POST"})
 
       dispatch({type:DELETE_PRODUCT,pid:product_id})
 }
@@ -57,8 +66,9 @@ export const deleteProduct=(productId)=>async (dispatch,getState)=>{
 export const createProduct=(title,description,imageUrl,price)=>async (dispatch,getState)=>{
       const token=getState().auth.token;
       const userId=getState().auth.userId;
+      const ownerId=userId
       const response=await fetch(
-            `https://react-native-c77d7/products.json?auth=${token}`,
+            `https://react-native-c77d7.firebaseio.com/products.json?auth=${token}`,
             {
                   method:'POST',
                   headers:{
@@ -86,7 +96,7 @@ export const createProduct=(title,description,imageUrl,price)=>async (dispatch,g
 
 export const updateProduct=(id,title,description,imageUrl)=>async(dispatch,getState)=>{
       const token=getState().auth.token;
-      const response=await fetch(`https://react-native-c77d7/products/${id}.json?auth=${token}`,{
+      const response=await fetch(`https://react-native-c77d7.firebaseio.com/products/${id}.json?auth=${token}`,{
             method:"POST",
             headers:{
                   "Content-Type":'application/json'

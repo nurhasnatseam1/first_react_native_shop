@@ -17,10 +17,12 @@ const OrderScreen=props=>{
 
 
       useEffect(()=>{
+            console.log('here')
             setIsLoading(true)
-            dispatch(ordersActions.fetchOrders()).then(()=>{
+            console.log('there')
+            dispatch(orderActions.fetchOrders()).then(()=>{
                   setIsLoading(false)
-            })
+            }).catch((error)=>console.log('there was an error',error))
       },[dispatch])
 
       if(isLoading){
@@ -40,7 +42,10 @@ const OrderScreen=props=>{
       }
 
       return (
-            <FlatList data={orders} keyExtractor={item=>item.id} renderItem={itemData=><OrderItem {...itemData.item} ></OrderItem>} ></FlatList>
+            <FlatList data={orders} keyExtractor={item=>item.id} renderItem={itemData=><OrderItem           amount={itemData.item.totalAmount}
+            date={itemData.item.readableDate}
+            items={itemData.item.items} ></OrderItem>} ></FlatList>
+
       )
 }
 
@@ -48,7 +53,7 @@ const OrderScreen=props=>{
 OrderScreen.navigationOptions=navData=>{
       return {
             headerTitle:'Your orders',
-            headerLeft:(
+            headerLeft:()=>(
                   <HeaderButtons HeaderbuttonComponent={HeaderButton}   >
                         <item  title='Menu'  iconName={Platform.OS==='android'?'md-menu':'ios-menu'} onPress={()=>navData.navigation.toggleDrawer()} ></item>
                   </HeaderButtons>

@@ -38,7 +38,7 @@ export const login = (email,password)=>async dispatch=>{
             })
       })
       if(!response.ok){
-            const errorData=await response.json();
+            const errorResData=await response.json();
             const errorId=errorResData.error.message;
             let message='Something went wrong'
             if(errorId==='EMAIL_NOT_FOUND'){
@@ -49,6 +49,7 @@ export const login = (email,password)=>async dispatch=>{
             }
 
             throw new Error(message)
+           
       }
 
 

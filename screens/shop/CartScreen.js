@@ -1,4 +1,4 @@
-import react ,{useState} from 'react';
+import React ,{useState} from 'react';
 import {View,Text,FlatList,Button,StyleSheet,ActivityIndicator} from 'react-native';
 
 
@@ -27,10 +27,11 @@ const CartScreen=props=>{
                         }
                   )
             }
+            return transformedCartItems
       })
 
       const dispatch=useDispatch()
-      const seOrderHandler=async ()=>{
+      const sendOrderHandler=async ()=>{
             setIsLoading(true)
             await dispatch(orderActions.addOrder(cartItems,cartTotalAmount))
             setIsLoading(false)
@@ -43,13 +44,13 @@ const CartScreen=props=>{
                         <Text style={styles.amount} >${Math.round(cartTotalAmount.toFixed(2)*100)/100}</Text>
                   </Card>
 
-                  {!isLoading?(
+                  {isLoading?(
                         <ActivityIndicator size='small' color={Colors.primary}/>
-                  ):
-                  (
-                        <Button color={Colors.primary} title='Order Now' disabled={cartItems.length===0} onPress={sendOrderHandler} ></Button>
-                  )
+                  ):null
+                        
+                  
                   }
+                  <Button color={Colors.primary} title='Order Now' disabled={cartItems.length===0} onPress={sendOrderHandler} ></Button>
 
                   <FlatList  data={cartItems} keyExtractor={item=>item.productId} renderItem={itemData=>(
                         <CartItem {...itemData.item} deleteable onRemove={()=>dispatch(cartActions.removeFromCart(itemData.item.productId))} ></CartItem>

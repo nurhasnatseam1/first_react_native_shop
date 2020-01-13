@@ -1,9 +1,13 @@
 import React,{useState} from 'react';
 import {createStore,combineReducers,applyMiddleware} from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import {Provider, } from 'react-redux';
 import {AppLoading} from 'expo';
 import * as Font from 'expo-font';
 import reduxThunk from 'redux-thunk';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore, persistReducer } from 'redux-persist'
+import {AsyncStorage} from 'react-native';
 
 
 
@@ -27,10 +31,19 @@ const rootReducer=combineReducers({
 })
 
 
-const store=createStore(rootReducer,applyMiddleware(reduxThunk))
+//redux-persist
+const persistConfig={
+  key:'root',
+  storage:AsyncStorage,
+  whitelist:['auth'],
+}
 
 
-
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+//ersisted store
+const store=createStore(persistedReducer,composeWithDevTools(applyMiddleware(reduxThunk)))
+//persistor
+const persistor = persistStore(store)
 
 const fetchFonts=()=>{
   return Font.loadAsync({
@@ -51,7 +64,9 @@ export default function App(){
 
   return (
     <Provider store={store} >
-      <ShopNavigator/>
+       <PersistGate loading={null} persistor={persistor}>
+           <ShopNavigator/>
+       </PersistGate>
     </Provider>
   )
 }

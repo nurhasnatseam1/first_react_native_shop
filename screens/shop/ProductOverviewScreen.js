@@ -14,7 +14,7 @@ import Colors from  '../../constants/colors';
 
 const productsOverviewScreen=props=>{
       const [isLoading,setIsLoading] =useState(false);
-      const [isRefreshing,setIsRefreshing]=useSate(false);
+      const [isRefreshing,setIsRefreshing]=useState(false);
       const [error,setError] =useState()
       const products=useSelector(state=>state.products.availableProducts)
       const dispatch=useDispatch()
@@ -22,13 +22,16 @@ const productsOverviewScreen=props=>{
       const loadProducts=useCallback(async ()=>{
             setError(null);
             setIsRefreshing(true);
+            console.log('i am here')
             try{
-                  await dispatch(productsActions.fetchProducts())
+
+                  await dispatch(productActions.fetchProducts())
+
             }catch(error){
                   setError(error.message)
             }
 
-            setIsLoading(false)
+            setIsRefreshing(false);
       },[dispatch,setIsLoading,setError])
 
       useEffect(()=>{
@@ -43,7 +46,7 @@ const productsOverviewScreen=props=>{
 
       useEffect(()=>{
             setIsLoading(false);
-            loadProducts.then(()=>{
+            loadProducts().then((res)=>{
                   setIsLoading(false)
             })
       },[dispatch,loadProducts])
@@ -57,6 +60,8 @@ const productsOverviewScreen=props=>{
       }
 
       if(error){
+            console.log('where there is a fire,there is smoke')
+            console.log(error)
             return (
                   <View style={styles.centered} >
                         <Text>An Error occured</Text>
@@ -66,7 +71,7 @@ const productsOverviewScreen=props=>{
       }
 
 
-      if(!isLoaded && products.length===0){
+      if(!isLoading && products.length===0){
             return (
                   <View style={styles.centered} >
                         <Text>No products found</Text>
@@ -74,7 +79,7 @@ const productsOverviewScreen=props=>{
             )
       }
       return (
-            <FlatList onRefresh={loadedProducts} refreshing={isRefressing} data={products} keyExtractor={item=>item.id} renderItem={itemData=>(
+            <FlatList onRefresh={loadProducts} refreshing={isRefreshing} data={products} keyExtractor={item=>item.id} renderItem={itemData=>(
                   <ProductItem image={itemData.item.image} title={itemData.item.title} price={itemData.item.price} onSelect={()=>{
                         selectItemHandler(itemData.item.id,itemData.item.title)
                   }} >

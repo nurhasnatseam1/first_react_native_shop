@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView,View,Text,image,Button,StyleSheet} from 'react-native';
+import {ScrollView,View,Text,Image,Button,StyleSheet} from 'react-native';
 import {useSelector,useDispatch} from 'react-redux';
 
 
@@ -10,7 +10,7 @@ import * as cartActions from '../../store/actions/cart';
 
 const ProductDetailScreen=props=>{
       const productId=props.navigation.getParam('productId')
-      const selectedProduct=useSelector(state=>state.products.availbaleProducts.find(product=>product.id===productId))
+      const selectedProduct=useSelector(state=>state.products.availableProducts.find(product=>product.id===productId))
       const dispatch=useDispatch()
 
       return (

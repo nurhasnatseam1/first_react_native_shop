@@ -5,12 +5,17 @@ export const SET_ORDERS='SET_ORDERS';
 
 
 export const fetchOrders=()=>{
+      console.log('balbalbal')
       return async (dispatch,getState)=>{
-            const userd=getState().auth.userId;
-            const response=await fetch(`https://react-native-c77d7/orders/${userId}.json?auth=${token}`)
+            console.log('bal')
+            const userId=getState().auth.userId;
+            const token=getState().auth.token;
+            const date=new Date()
+            console.log(userId)
+            const response=await fetch(`https://react-native-c77d7.firebaseio.com/orders/${userId}.json?auth=${token}`)
             if(!response.ok){
                   throw new Error('Something went wrong')
-            }onst
+            }
             const resData=await response.json()
             const loadedOrders=[]
             for(const key in resData){
@@ -27,12 +32,14 @@ export const fetchOrders=()=>{
 }
 
 
-export const addOrder=(cartItem,totalAmount)=>{
+export const addOrder=(cartItems,totalAmount)=>{
       return async (dispatch,getState)=>{
+
             const token=getState().auth.token;
             const userId=getState().auth.userId;
+            console.log(userId)
             const date=new Date()
-            const response=await fetch(`https://react-native-c77d7/orders/${userId}.json?auth=${token}`,{
+            const response=await fetch(`https://react-native-c77d7.firebaseio.com/orders/${userId}.json?auth=${token}`,{
                   method:'POST',
                   headers:{
                         'Content-Type':'application/json'
@@ -40,7 +47,7 @@ export const addOrder=(cartItem,totalAmount)=>{
                   body:JSON.stringify({
                         cartItems,
                         totalAmount,
-                        date:date.toISOStringI()
+                        date:date.toISOString()
                   })
             })
 

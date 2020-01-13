@@ -43,7 +43,7 @@ const ProductsNavigator=createStackNavigator({
       navigationOptions:{
             drawerIcon:drawerconfig=>{
                   return(
-                        <Ionicon name={Platform.OS==='android'?'md-cart':'ios-cart'} size={23} color={drawerconfig.tintColor} ></Ionicon>
+                        <Ionicons name={Platform.OS==='android'?'md-cart':'ios-cart'} size={23} color={drawerconfig.tintColor} ></Ionicons>
                   )
             }
       }
@@ -56,7 +56,7 @@ const ordersNavigator=createStackNavigator({
 },{
       navigationOptions:{
             drawerIcon:drawerconfig=>(
-                  <Ionicon name={Platform.OS === 'android'?'md-list':'ios-list' } size={23} color={drawerconfig.tintColor} ></Ionicon>
+                  <Ionicons name={Platform.OS === 'android'?'md-list':'ios-list' } size={23} color={drawerconfig.tintColor} ></Ionicons>
             )
       },
       defaultNavigationOptions:defaultNavOptions
@@ -71,7 +71,7 @@ const adminNavigator=createStackNavigator({
 },{
       navigationOptions:{
             drawerIcon:drawerconfig=>(
-                  <Ionicon name={Platform.OS==='android'?'md-create':'ios-create'} size={23} color={drawerconfig.tintColor} ></Ionicon>
+                  <Ionicons name={Platform.OS==='android'?'md-create':'ios-create'} size={23} color={drawerconfig.tintColor} ></Ionicons>
             )
       },
       defaultNavigationOptions:defaultNavOptions
@@ -102,6 +102,8 @@ const AuthNavigator=createStackNavigator({
 const MainNavigator=createSwitchNavigator({
       Auth:AuthNavigator,
       Shop:ShopNavigator,
+
+      
 })
 
 
