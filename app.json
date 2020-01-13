@@ -25,6 +25,9 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android":{
+      "package":"com.no_company_12143243.shop_app"
     }
   }
 }
